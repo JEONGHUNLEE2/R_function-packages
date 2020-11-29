@@ -1,0 +1,139 @@
+1주차
+
+rm(list = ls())
+
+seq (시작값, 마지막값, by(증가분) or length(길이지정)) 
+rep (반복할 값, 반복횟수(each:각각, length:길이만큼, tmies: 반복 출력)
+
+factor(obj, levels=변수값, labels=요인이름)
+ordered(obj, levels=변수값, labels=요인이름)
+
+matrix(data, byrow = T, ncol = 3) : 행렬을 생성하기 위해 사용, byrow = 행 기준 행렬을 생성(기본적으로 열로 기준이 되어있다.)
+rownames()
+colnames()
+
+array() : 행렬을 2차원 이상으로 확장 , array(1:8, c(2,2,2))  
+dim() : arr <- c(1:24)                                
+        dim(arr) <- c(3,4,2) 
+        
+data.frame() : 이미 생성되어 있는 벡터들을 결합하여 데이터 프레임을 생성
+list() : 서로 다른 형태(mode)의 자료를 포함하는 하나의 객체
+
+----------------------------------------------------------------------------------------------------------------------
+
+2주차
+
+getwd() : 작업 폴더 확인하기 
+setwd() : 작업 폴더 지정하기
+View() : 데이터보기
+
+read.csv('test.csv') : 데이터 불러오기
+read.csv('pop_seoul_euckr.csv', fileEncoding='euc-kr') : 글자가 깨지는 경우에 사용하는 부수적인 함수 
+
+head(pop_seoul)
+tail(pop_seoul, n=10) 
+str(pop_seoul)
+summary(pop_seoul)
+
+read.table( ) :  txt파일 불러오기
+write.csv(저장할객체, file='경로/이름') : 객체 내보내기
+
+install.packages('openxlsx')
+library(openxlsx) : 원래는 없었던 read.xlsx( ) 함수 사용가능 
+
+read.xlsx('test.xlsx', sheet=2, startRow=3) 
+
+new_data <- readRDS("iris.RDS")
+saveRDS(new_data, file = "new_iris.RDS") : 변수자체를 저장하는 느낌! 작업이력!
+
+load("iris.RData") : 변수를 묶어서 저장 
+save.image("iris_image.RData") : image 저장 ----요부분 잘 모르겠네
+
+data$CC <- 1 : 열추가
+
+sample(1:6,10, replace = T) : 랜덤 추출(replace = T는 중복가능)
+subset(data, 조건)
+
+rbind(data1, data2...)
+cbind(data1, data2...)
+
+my_data$age_grp = cut(my_data$age, 
+                      breaks=c(10,20,30,40), 
+                      include.lowest=TRUE, #왼쪽꺼 포함할꺼냐!(이상), 포함안하면 (초과)느낌
+                      right=FALSE,
+                      labels=c('10_19','20_29','30_39'))
+                      
+merge(데이터1, 데이터2, by.x='첫번째데이터의 기준변수', by.y='두번째...') : 기준변수가 같을 때는 'by='으로 한번에 지정가능
+ - all.x, all.y, all=TRUE : 짝이 없는 데이터까지 포함시킬지 여부 옵션 **중요
+
+-------------------------------------------------------------------------------------------------------------------
+
+3주차
+
+조건문
+if( 조건1 ) {
+  # 표현식 1
+} else if (조건2) {
+  # 표현식 2
+} else {
+  # 표현식 3
+}
+ifelse(조건,참,거짓)
+
+
+루프문
+expand.grid(data1, data2) : 벡터에 있는 요소이 모든 조합을 작성
+prob <- c("1" = 1/8, "2" = 1/8, "3" = 1/8, "4" = 1/8, "5" = 1/8, "6" = 3/8)
+rolls$prob1 <- prob[rolls$Var1] 
+rolls$prob2 <- prob[rolls$Var2]
+rolls$prob <- rolls$prob1 * rolls$prob2
+
+for (value in that) {
+  this
+  print(value) #중간 과정 보려고!
+}
+
+*for문과 while 차이 
+ for문은 몇번 돌아야하는지가 명확히 나와있고
+ while은 조건을 만족할 때까지 반복하는 것! 
+
+i <- 1
+while (i < 6) {
+  print(i)
+  i = i+1
+}
+
+k <- 1
+repeat {
+  k <- k+3
+  if (k < 5) break}
+
+apply(x,1,sum) : x행렬을 행 방향으로 sum()함수를 사용해줘, for문을 좀 더 쉽게 사용하는 함수?
+apply(iris[, 1:4], 2, sum)
+
+lapply() : 벡터, 리스트 또는 표현식에 함수를 적용하여 그 결과를 리스트로 반환
+lapply(iris[, 1:4], mean)
+
+sapply() : lapply와 유사하지만 결과를 벡터, 행렬 또는 배열로 반환
+sapply(iris[, 1:4], mean)
+
+tapply( ) : 벡터에 있는 데이터를 특정 기준에 따라 그룹으로 묶은 뒤 각 그룹마다 주어진 함수를 적용하고 그 결과를 반환
+tapply(iris$Sepal.Length, iris$Species, mean)
+
+mapply(mean, iris[, 1:4]) : sapply의 확장된 버전으로, 여러 개의 벡터 또는 리스트를 인자로 받아 함수에 각 데이터의 첫째 요소들을 적용한 결과, 둘째 요소들을 적용한 결과, 
+                            셋째 요소들을 적용한 결과 등을 반환
+
+
+rowSums(iris[, 1:4])
+colSums(iris[, 1:4])
+
+unlist() : 리스트 구조를 벡터로 변환한다.
+do.call() : 함수를 리스트로 주어진 인자에 적용하여 결과를 반환한다.
+
+sapply(iris, class) : 변수 구조 확인할떄 많이 쓴다.
+str(iris)
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+4주차 
+
