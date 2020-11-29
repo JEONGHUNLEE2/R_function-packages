@@ -1,3 +1,4 @@
+--------------------------패키지, cheat sheet 구글하면 해당 패키지 자주쓰이는거 정리해놓은 이미지 나옴
 1주차
 
 rm(list = ls())
@@ -136,4 +137,26 @@ str(iris)
 ------------------------------------------------------------------------------------------------------------------------------------------------------
 
 4주차 
+install.packages('dplyr') 
+library(dplyr)
+
+slice(데이터명, 잘라서가져올 행)
+filter(데이터명, 조건)
+arrange(데이터명, 정렬기준변수1, 정렬기준변수2, ...) : 내림차순(Descending)으로 정렬할 때는 'desc' 옵션 활용
+select(데이터명, 컬럼)
+distinct( delivery, 업종) : 시간이 많이 걸림
+mutate() 기존 변수를 활용한 임시 변수 만들기
+
+paste0() : ex) d열 데이터를 새로 만드는데 c열에 있는 데이터 참고해서 일괄적으로 데이터에 추가할때?
+           mutate(delivery, 새요일=paste0(요일, '요일'))
+
+count(delivery, 시군구) : 그룹별 개수 세기 
+group_by(delivery, 시군구) : 그룹별 지정
+summarize( )로 요약 하기
+summarise(delivery, mean(통화건수), 
+                    m = min(통화건수), 
+                    M = max(통화건수))
+
+top_n(delivery, 5, 통화건수)
+
 
