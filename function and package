@@ -1,4 +1,21 @@
---------------------------패키지, cheat sheet 구글하면 해당 패키지 자주쓰이는거 정리해놓은 이미지 나옴
+패키지 ------------------------------------------- '패키지명' cheat sheet 구글하면 해당 패키지 자주쓰이는거 정리해놓은 이미지 나옴
+install.packages('openxlsx')
+install.packages('dplyr') 
+install.packages("hflights") -- 요건 데이터 쓰려고
+install.packages('tidyr')
+iinstall.packages("stringr")
+install.packages('lubridate')
+
+
+라이브러리 --------------------------------------
+library(openxlsx)
+library(dplyr)
+library(hflights)
+library(tidyr)
+library(stringr)
+library(lubridate)
+
+--------------------------
 1주차
 
 rm(list = ls())
@@ -150,6 +167,7 @@ mutate() 기존 변수를 활용한 임시 변수 만들기
 
 paste0() : ex) d열 데이터를 새로 만드는데 c열에 있는 데이터 참고해서 일괄적으로 데이터에 추가할때?
            mutate(delivery, 새요일=paste0(요일, '요일'))
+paste0('H', substr(names(subway_2017)[6:25], 1, 2))
 
 count(delivery, 시군구) : 그룹별 개수 세기 
 group_by(delivery, 시군구) : 그룹별 지정
@@ -159,5 +177,47 @@ summarise(delivery, mean(통화건수),
                     M = max(통화건수))
 
 top_n(delivery, 5, 통화건수)
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+5주차
+
+spread(데이터이름, 기준변수이름, 나열할 값)
+replace_na(list(변수1=값, 변수2=값, ...)) : 대체
+drop_na(결측값을 찾을 변수1, 변수2, ...)  : 삭제
+gather(데이터이름, 새기준변수이름, 새변수이름, 모을 변수들) :
+complete( )로 빠져있는 조합 채우기 : 모든 경우의 수에 행을 추가해서 na값을 대체 
+
+str_detect(x, "e") e가 들어가 있냐 없냐! -> True False 형으로 반환
+str_count(x,"a") 각 데이터에 a가 몇 개씩 들어가있냐!
+str_which(x,"e") 위치, 몇번째 데이터에 포함되어있냐!
+str_locate(x,"a") 텍스트 내에서의 어느 위치에 있는거야? -> 반환
+str_subset(x,"r") x데이터에서 r이 포함되어있는걸 뽑아와!!
+
+str_replace("apple","p","l") : 첫자만 
+str_replace_all("apple","p","l") : 데이터를 날릴 때?(대체) 할 때 사용, ‘p’를 ‘l’로 바꿔줘!!
+
+str_to_lower("STRING") : 소문자로
+str_to_upper("string") : 대문자로
+str_to_title("string") : 첫 글자만
+
+as.factor(x) : 주어진 객체 x를 팩터ymd('20200110')
+mdy('January 10th 2020')
+dmy('10-jan-2020')
+ymd('820327')
+ymd(820327)
+
+로 변환
+as.numeric(x) : 주어진 객체 x를 숫자를 저장한 벡터로 변환
+as.character(x) : 주어진 객체 x를 문자열을 저장한 벡터로 변환
+as.matrix(x) : 주어진 객체 x를 행렬로 변환
+as.data.frame(x) : 주어진 객체 x를 데이터 프레임으로 변환
+
+ymd('20200110')
+mdy('January 10th 2020')
+dmy('10-jan-2020')
+ymd('820327')
+ymd(820327)
+
 
 
