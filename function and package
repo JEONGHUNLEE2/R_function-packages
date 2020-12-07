@@ -228,6 +228,8 @@ ymd(820327)
 install.packages('ggplot2')
 library(ggplot2)
 
+options("scipen" = 100) --- y축에 숫자 너무 커서 정수로 만들어주고싶을 때 
+
 점그래프
 ggplot(data1) + --------------------1. 도화지 그리기
   aes(x = gdpPercap) + ------------2. x축 지정
