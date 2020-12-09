@@ -6,6 +6,8 @@ install.packages('tidyr')
 iinstall.packages("stringr")
 install.packages('lubridate')
 install.packages('ggplot2')
+install.packages("sampling")
+install.packages("reshape")
 
 라이브러리 --------------------------------------
 library(openxlsx)
@@ -15,6 +17,8 @@ library(tidyr)
 library(stringr)
 library(lubridate)
 library(ggplot2)
+library(sampling)
+library(reshape)
 
 -----------------------------------------------
 
@@ -266,6 +270,75 @@ gapminder %>%
           
 나머지 테마변경, 범례 수정, 축 변경, 색 변경, 글자크기, 각도 수정 수업자료 참고
 
+--------------------------------------------------------------------------------------------------------
+
+7주차 : 기초통계(기술통계, 추론통계)
+
+평균
+mean(x,na.rm=FALSE)
+
+분산
+var(x,na.rm=FALSE)
+
+표준편차
+sd(x,na.rm=FALSE)
+
+사분위수
+quantile(1:10,0.7)
+
+요약
+summary(1:11)
+
+table(x) : 팩터의 각 레벨(level)별 빈도수를 구한다.
+which.max(table(x)) : 가장 큰 값이 저장된 셀의 색인은 3
+names(table(x))[3] : 가장 큰 값이 저장된 셀의 이름
+
+주변비율, 데이터비중
+x1 <- data.frame(x1=sample(1:5,20,replace = T),x2=sample(1:5,20,replace = T))
+prop.table(table(x1)) 
+prop.table(table(x1),1)
+prop.table(table(x1),2)
+
+
+추출
+랜덤추출
+sample(1:10, 5, replace=TRUE) : replace(복원 추출 여부)
+sample(x,size,replace = )
+
+층화추출
+install.packages("sampling")
+library(sampling)
+x <- strata(stratanames = "Species", size=c(3, 3, 3), method="srswor", data=iris)
+
+
+이산확률 분포
+RB = sample( c(0,1) , 400 , prob = c(0.4,0.6), replace=T) : 0.4,0.6 비율로 뽑고싶어
+
+ggplot(NULL) +
+  geom_bar(aes(x = as.factor(RB), fill = as.factor(RB))) +
+  theme_bw() +
+  xlab("") + ylab("") + #---이게 뭐였찌 
+  scale_x_discrete(labels = c("실패","성공")) +
+  theme(legend.position = 'none')  
   
-  
-  
+ 
+이항분포 추출
+rbinom(n=100,size=5,prob=0.5) : 동전을 5번 던졌을 경우 앞면이 나오는 횟수 (n이 어느정도 크면 정규분포 형태를 보인다. 중심극한정리)
+
+확률을 확인
+dbinom(x=3,size=5,prob=0.5) #3번 앞면
+dbinom(x=4,size=5,prob=0.5) #4번 앞면이 나올 확률!
+
+누적 확률 확인
+pbinom(q=2, size = 5, prob = 0.5) # 2 이하 성공
+pbinom(q=3, size = 5, prob = 0.5) # 3 이하 성공
+
+
+연속 확률 분포
+R = rnorm(n = 100000, mean = 0, sd = 1)
+
+rnorm() : 평균과 분산에 해당하는 랜덤 샘플
+dnorm() : 확률 밀도함수
+pnorm() : 누적 분포함수
+qnorm() : 분위수 함수
+
