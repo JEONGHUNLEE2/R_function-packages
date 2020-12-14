@@ -8,6 +8,11 @@ install.packages('lubridate')
 install.packages('ggplot2')
 install.packages("sampling")
 install.packages("reshape")
+install.packages("psych") - 상관관계 그래프, 8
+install.packages("PerformanceAnalytics")
+install.packages("moonBook") - acs 데이터
+install.packages("corrplot") - 상관관계 기본 그래프
+install.packages("laercio") - 분산분석?
 
 라이브러리 --------------------------------------
 library(openxlsx)
@@ -19,6 +24,11 @@ library(lubridate)
 library(ggplot2)
 library(sampling)
 library(reshape)
+library(moonBook)
+library(psych)
+library(PerformanceAnalytics)
+library(corrplot)
+library(laercio)
 
 -----------------------------------------------
 
@@ -341,4 +351,56 @@ rnorm() : 평균과 분산에 해당하는 랜덤 샘플
 dnorm() : 확률 밀도함수
 pnorm() : 누적 분포함수
 qnorm() : 분위수 함수
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+8주차
+install.packages("moonBook")
+install.packages("psych")
+install.packages("PerformanceAnalytics")
+install.packages("corrplot")
+
+cor(acs2,use="na.or.complete") : 상관관계 숫자 표현
+pairs.panels(acs2) : 상관관계 그래프 표현
+chart.Correlation(acs2, histogram=TRUE, pch=19) : 상관관계 그래프 표현
+
+plot(dat$a,dat$b) : 데이터 분포
+abline(lm(dat$b~dat$a)) : 데이터 분포 선그리기
+cor(dat$a,dat$b) : 상관계수 
+
+상관계수할 때는 아웃라이어를 고민해야한다, 신경써야한다. 민감하다. 
+
+corrplot(cor(acs2,use="na.or.complete"),method="number")
+
+
+집단에 대한 평균비교 t-test----------
+1. 박스플랏으로 데이터분포 확인
+ggplot(t_data,aes(x=factor(group),y=score,fill=factor(group))) + geom_boxplot()
+
+2. 정규성 검정 : p-value 가 0.05이상이면 정규성을 보인다. 
+shapiro.test(t_data$score)
+
+3. 등분산성 검정 : 분산이 같은지 다른지에 따라 검증의 결과가 달라지기 때문이다.
+                 p-value가 0.05이상이면 등분산이다. 
+t_data_1<-t_data[t_data$group==1,]
+t_data_2<-t_data[t_data$group==2,]
+var.test(t_data_1$score,t_data_2$score)
+
+4. t-test : var.equal은 등분산이면 T 이분산(등분산이 아닌거)는 F로 설정
+t.test(t_data_1$score,t_data_2$score,var.equal=T)
+= p-value 값이 0.05 이하가 나왔음으로 대립가설 채택!
+
+
+대응 t-test의 수행(전/후 비교) ----------
+before_op = c(137,119,117,122,132,110,114,117)
+after_op = c(126,111,117,116,135,110,113,112)
+
+t.test(before_op,after_op,paired=T)
+= p-value 0.05 이상이 나와서 귀무가설 채택
+
+
+3개 이상의 평균비교 시 분산분석 ----------
+
+
+
 
