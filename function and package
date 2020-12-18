@@ -12,7 +12,8 @@ install.packages("psych") - 상관관계 그래프, 8
 install.packages("PerformanceAnalytics")
 install.packages("moonBook") - acs 데이터
 install.packages("corrplot") - 상관관계 기본 그래프
-install.packages("laercio") - 분산분석?
+install.packages("laercio") - 분산분석, 사후검정 함수패키지
+install.packages("gmodels") - 카이제곱
 
 라이브러리 --------------------------------------
 library(openxlsx)
@@ -29,6 +30,7 @@ library(psych)
 library(PerformanceAnalytics)
 library(corrplot)
 library(laercio)
+library(gmodels)
 
 -----------------------------------------------
 
