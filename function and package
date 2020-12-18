@@ -83,7 +83,7 @@ new_data <- readRDS("iris.RDS")
 saveRDS(new_data, file = "new_iris.RDS") : 변수자체를 저장하는 느낌! 작업이력!
 
 load("iris.RData") : 변수를 묶어서 저장 
-save.image("iris_image.RData") : image 저장 ----요부분 잘 모르겠네
+save.image("iris_image.RData") : image 저장 ----요부분 잘 모르겠네, 변수저장
 
 data$CC <- 1 : 열추가
 
