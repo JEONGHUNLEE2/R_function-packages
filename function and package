@@ -6,6 +6,8 @@ install.packages('tidyr')
 iinstall.packages("stringr")
 install.packages('lubridate')
 install.packages('ggplot2')
+install.packages("ggthemes") - 그래프 스타일?
+install.packages("gapminder") - 각 나라별 5년 주기로 기대수명, 총생산GDP 지수 데이터 
 install.packages("sampling")
 install.packages("reshape")
 install.packages("psych") - 상관관계 그래프, 8
@@ -23,6 +25,8 @@ library(tidyr)
 library(stringr)
 library(lubridate)
 library(ggplot2)
+library(ggthemes)
+library(gapminder)
 library(sampling)
 library(reshape)
 library(moonBook)
