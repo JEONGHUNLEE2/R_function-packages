@@ -406,3 +406,14 @@ t.test(before_op,after_op,paired=T)
 
 
 3개 이상의 평균비교 시 분산분석 ----------
+
+분산분석에서 등분산성 검정할 때는 var.test가 아니고 
+bartlett.test(score~as.factor(group),data=anova_data)
+oneway.test(score~group,data=anova_data,var.equal = T) / 이분산성일 때는 var.equal = F
+
+등분산성 검정이 유의하다고 나오고 최종 분산분석까지 p-vaule에서 대립가설 채택하게 되면 사후검정실시 
+LDuncan(a1, "group")
+
+TukeyHSD(aov(score~as.character(group),data=anova_data))
+plot(TukeyHSD(aov(score~as.character(group),data=anova_data)))
+aov : one-way ANOVA 분석
