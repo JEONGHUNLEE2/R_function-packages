@@ -406,7 +406,3 @@ t.test(before_op,after_op,paired=T)
 
 
 3개 이상의 평균비교 시 분산분석 ----------
-
-
-
-
