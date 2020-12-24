@@ -228,6 +228,7 @@ mdy('January 10th 2020')
 dmy('10-jan-2020')
 ymd('820327')
 ymd(820327)
+--- as.Date는 잘안쓴다. 
 
 로 변환
 as.numeric(x) : 주어진 객체 x를 숫자를 저장한 벡터로 변환
