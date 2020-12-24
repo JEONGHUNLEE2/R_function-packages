@@ -427,3 +427,9 @@ train$month <- month(train$datetime)
 train$day <- day(train$datetime)
 train$hour <- hour(train$datetime)
 train$weekday <- weekdays(train$datetime)
+
+train %>%
+  ggplot(aes(x=hour, y=month, fill=count))+
+  geom_tile()+
+  scale_fill_distiller(palette = "Blues",direction = 1) # direction = 1 은 밝기에 대한 오름차순 내림차순 느낌! 
+
