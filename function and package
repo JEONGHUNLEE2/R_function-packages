@@ -418,3 +418,12 @@ LDuncan(a1, "group")
 TukeyHSD(aov(score~as.character(group),data=anova_data))
 plot(TukeyHSD(aov(score~as.character(group),data=anova_data)))
 aov : one-way ANOVA 분석
+
+-------------------------------------------------------------------------------------
+
+10주차 보면 데이터 전처리, 변수생성 참고하기 좋음
+train$year <- year(train$datetime)
+train$month <- month(train$datetime)
+train$day <- day(train$datetime)
+train$hour <- hour(train$datetime)
+train$weekday <- weekdays(train$datetime)
