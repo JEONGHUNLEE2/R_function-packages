@@ -16,8 +16,9 @@ install.packages("moonBook") - acs 데이터
 install.packages("corrplot") - 상관관계 기본 그래프
 install.packages("laercio") - 분산분석, 사후검정 함수패키지
 install.packages("gmodels") - 카이제곱
+install.packages("DataExplorer") -- 전체적으로 보고서 만들어주는 함수, 전체적인 데이터파악할 때 좋을 듯  
 
-라이브러리 --------------------------------------
+라이브러리 -------------------------------------- 데이터함수랑 구분해야겠다. **
 library(openxlsx)
 library(dplyr)
 library(hflights)
@@ -35,6 +36,7 @@ library(PerformanceAnalytics)
 library(corrplot)
 library(laercio)
 library(gmodels)
+library(DataExplorer)
 
 -----------------------------------------------
 
@@ -432,4 +434,8 @@ train %>%
   ggplot(aes(x=hour, y=month, fill=count))+
   geom_tile()+
   scale_fill_distiller(palette = "Blues",direction = 1) # direction = 1 은 밝기에 대한 오름차순 내림차순 느낌! 
+  
+T검정 과정과 F검정(분산분석)과정 순서 적어놓기  
+var.test(count~workingday,data=train)
+t.test(count~workingday,data=train,var.equal = F/T)
 
