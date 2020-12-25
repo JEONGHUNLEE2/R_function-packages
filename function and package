@@ -1,44 +1,50 @@
-패키지 ------------------------------------------- '패키지명' cheat sheet 구글하면 해당 패키지 자주쓰이는거 정리해놓은 이미지 나옴
-install.packages('openxlsx')
-install.packages('dplyr') 
-install.packages("hflights") -- 요건 데이터 쓰려고
-install.packages('tidyr')
-iinstall.packages("stringr")
-install.packages('lubridate')
-install.packages('ggplot2')
-install.packages("ggthemes") - 그래프 스타일?
-install.packages("gapminder") - 각 나라별 5년 주기로 기대수명, 총생산GDP 지수 데이터 
-install.packages("sampling")
-install.packages("reshape")
-install.packages("psych") - 상관관계 그래프, 8
-install.packages("PerformanceAnalytics")
-install.packages("moonBook") - acs 데이터
-install.packages("corrplot") - 상관관계 기본 그래프
-install.packages("laercio") - 분산분석, 사후검정 함수패키지
-install.packages("gmodels") - 카이제곱
-install.packages("DataExplorer") -- 전체적으로 보고서 만들어주는 함수, 전체적인 데이터파악할 때 좋을 듯  
+패키지 ------------------------------------------------------------------------ '패키지명' cheat sheet 구글하면 해당 패키지 자주쓰이는거 정리해놓은 이미지 나옴
+  가. 기능패키지
+	install.packages('openxlsx')
+	install.packages('dplyr') 
+	install.packages('tidyr')
+	iinstall.packages("stringr")
+	install.packages('lubridate')
+	install.packages('ggplot2')
+	install.packages("ggthemes") - 그래프 스타일?
+	install.packages("sampling")
+	install.packages("reshape")
+	install.packages("psych") - 상관관계 그래프, 8
+	install.packages("PerformanceAnalytics")
+	install.packages("corrplot") - 상관관계 기본 그래프
+	install.packages("laercio") - 분산분석, 사후검정 함수패키지
+	install.packages("gmodels") - 카이제곱
+	install.packages("DataExplorer") -- 전체적으로 보고서 만들어주는 함수, 전체적인 데이터파악할 때 좋을 듯  
 
-라이브러리 -------------------------------------- 데이터함수랑 구분해야겠다. **
-library(openxlsx)
-library(dplyr)
-library(hflights)
-library(tidyr)
-library(stringr)
-library(lubridate)
-library(ggplot2)
-library(ggthemes)
-library(gapminder)
-library(sampling)
-library(reshape)
-library(moonBook)
-library(psych)
-library(PerformanceAnalytics)
-library(corrplot)
-library(laercio)
-library(gmodels)
-library(DataExplorer)
+  나. 데이터 패키지
+	install.packages("hflights") -- 요건 데이터 쓰려고
+	install.packages("gapminder") - 각 나라별 5년 주기로 기대수명, 총생산GDP 지수 데이터 
+	install.packages("moonBook") - acs 데이터
 
------------------------------------------------
+
+라이브러리 -------------------------------------------------------------------
+  가. 기본 라이브러리
+	library(openxlsx)
+	library(dplyr)
+	library(tidyr)
+	library(stringr)
+	library(lubridate)
+	library(ggplot2)
+	library(ggthemes)
+	library(sampling)
+	library(reshape)
+	library(psych)
+	library(PerformanceAnalytics)
+	library(corrplot)
+	library(laercio)
+	library(gmodels)
+	library(DataExplorer)
+	
+  나. 데이터 라이브러리
+	library(hflights)
+	library(gapminder)
+	library(moonBook)
+--------------------------------------------------------------------------------------------
 
 1주차
 
