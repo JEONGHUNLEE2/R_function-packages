@@ -441,7 +441,13 @@ train %>%
   geom_tile()+
   scale_fill_distiller(palette = "Blues",direction = 1) # direction = 1 은 밝기에 대한 오름차순 내림차순 느낌! 
   
-T검정 과정과 F검정(분산분석)과정 순서 적어놓기  
-var.test(count~workingday,data=train)
-t.test(count~workingday,data=train,var.equal = F/T)
+T검정 과정 
+ 가. one-sample t-test : 집단의 평균이 특정 숫자와(비교해보고 싶은)와 같은지 다른지를 비교
+ 나. Two-sample t-test : 두 집단의 평균 비교
+ 다. paired t-test : 같은 집단으로 Before와 After 비교 
+	var.test(count~workingday,data=train)
+	t.test(count~workingday,data=train,var.equal = F/T)
+
+F검정(분산분석)과정 
+ 가. one-way ANOVA : 독립변수가 하나이고 3개이상의 그룹의 평균을 비교 
 
