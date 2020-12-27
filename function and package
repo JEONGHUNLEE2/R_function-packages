@@ -441,13 +441,71 @@ train %>%
   geom_tile()+
   scale_fill_distiller(palette = "Blues",direction = 1) # direction = 1 은 밝기에 대한 오름차순 내림차순 느낌! 
   
-T검정 과정 
- 가. one-sample t-test : 집단의 평균이 특정 숫자와(비교해보고 싶은)와 같은지 다른지를 비교
- 나. Two-sample t-test : 두 집단의 평균 비교
- 다. paired t-test : 같은 집단으로 Before와 After 비교 
+--------------------------------------------------------------------------------------------------------
+전체적인 과정
+
+1. 데이터 불러오기 
+   작업창 설정 ctrl + Shift + H
+    train <- read.csv("bike.csv")
+
+2. 데이터 파악
+  head(train)
+  summary(train)
+  str(train)
+  View(train)
+
+3. 필요한 변수 생성 
+	train$datetime <-ymd_hms(train$datetime)
+
+	train$year <- year(train$datetime)
+	train$month <- month(train$datetime)
+	train$day <- day(train$datetime)
+	train$hour <- hour(train$datetime)
+
+4. 데이터 타입 변형시켜주기 - 범주형, 연속형을 구분해주는것은 중요!
+	train$season= as.factor(train$season)
+	train$weather<- as.factor(train$weather)
+	train$holiday<- as.factor(train$holiday)
+	train$workingday <- as.factor(train$workingday)
+	train$weekday <- as.factor(train$weekday)
+	train$year <- as.factor(train$year)
+------------------------------------------------------------------------------------
+1. 시각적 접근
+	train %>% 
+	  group_by(workingday) %>% 
+	  summarise(count = sum(count)) %>% 
+	  ggplot(aes(x=workingday, y=count, fill=workingday))+geom_bar(stat = "identity")
+	  
+2. 통계적 접근
+**상관관계 분석 : 변수간의 연광성 확인
+  1) na값 처리 후 상관관계 파악(제거, 중앙값, 평균값으로 대체 등등)
+	cor(acs2,use="na.or.complete")	
+  2) 시각화 
+	pairs.panels(acs2)
+	chart.Correlation(acs2, histogram=TRUE, pch=19)
+
+가. 톡립표본 T검정(서로 다른 두 개의 그룹간의 평균 비교)
+  1) 정규성 검정 shapiro.test() - 실무에선 생략하는 경우가 많음(표본의 개수가 30개가 넘으면)
+  2) 등분산성 검정 var.test() 
 	var.test(count~workingday,data=train)
-	t.test(count~workingday,data=train,var.equal = F/T)
+  3) T검정 t.test(var.equal = T) or t.test(var.equal = F)
+	t.test(count~workingday,data=train,var.equal = F)
 
-F검정(분산분석)과정 
- 가. one-way ANOVA : 독립변수가 하나이고 3개이상의 그룹의 평균을 비교 
+나. 대응표본 T검정(전/후 비교)
+  1) 정규성 검정 shapiro.test()
+  2) T검정 t.test(paired = T) or wilcox.test(paired = T)
 
+다. 분산분석(3개 이상의 집단 평균비교)
+  1) 정규성 검정 shapiro.test() 
+  2) 등분산성 검정 bartlett.test()
+  3) F검정 oneway.test(var.equal = T) or oneway.test(var.equal = F)
+  4) 사후검정 
+	LDuncan(a1, "group")
+	TukeyHSD(aov(score~as.character(group),data=anova_data))
+	plot(TukeyHSD(aov(score~as.character(group),data=anova_data)))
+
+라. 카이제곱 : 두 범주형 변수를 빈도 기반 검정실시  <- 요거는 다시 
+  1) 적합도 검정
+  2) 독립성 검정
+	chisq.test(table(delivery$요일,delivery$업종))
+	mosaicplot(t(table(delivery$요일,delivery$업종)),col=c("deepskyblue", "brown2"))
