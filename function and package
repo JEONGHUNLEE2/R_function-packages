@@ -509,3 +509,6 @@ train %>%
   2) 독립성 검정
 	chisq.test(table(delivery$요일,delivery$업종))
 	mosaicplot(t(table(delivery$요일,delivery$업종)),col=c("deepskyblue", "brown2"))
+----------------------------------------------------------------------------------------------------
+
+labeller=label_both() : 그래프 상단에 뭐에 대한 1 or 0인지 표시해줌! 
