@@ -89,7 +89,7 @@ write.csv(저장할객체, file='경로/이름') : 객체 내보내기
 install.packages('openxlsx')
 library(openxlsx) : 원래는 없었던 read.xlsx( ) 함수 사용가능 
 
-read.xlsx('test.xlsx', sheet=2, startRow=3) 
+read.xlsx('test.xlsx', sheet=2, startRow=3) #안적으면 1이 고정값
 
 new_data <- readRDS("iris.RDS")
 saveRDS(new_data, file = "new_iris.RDS") : 변수자체를 저장하는 느낌! 작업이력!
